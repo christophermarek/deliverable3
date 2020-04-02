@@ -12,14 +12,13 @@ public class InStockState implements ItemState {
 	int newQuantity = item.getAvailableQuantity() - quantity;
 	if (newQuantity < 0) {
 	    result = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
+	    item.setState(ItemStateFactory.create("low-stock"));
 	}
 	else {
 	    result = new ItemResult("AVAILABLE", ResponseCode.Completed);
 	    item.setAvailableQuantity(newQuantity);
 	    if (newQuantity == 0)
 		item.setState(ItemStateFactory.create("out-of-stock"));
-	    else if (newQuantity < 50)
-		item.setState(ItemStateFactory.create("low-stock"));
 	}
 	item.notifyViewers();
 	return result;

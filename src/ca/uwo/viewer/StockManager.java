@@ -72,7 +72,6 @@ public class StockManager extends Viewer implements Runnable {
 	    System.out.println("Stockmanager looking for potential orders...");
 	    if (!restockDetails.isEmpty())
 		order();
-
 	    System.out.println("Wait for orders to accumulate...");
 	    try {
 		Thread.sleep(5000);

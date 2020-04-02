@@ -15,10 +15,7 @@ public class OutOfStockState implements ItemState {
     public ItemResult replenish(Item item, int quantity) {
 	int newQuantity = item.getAvailableQuantity() + quantity;
 	item.setAvailableQuantity(newQuantity);
-	if (newQuantity < 50)
-	    item.setState(ItemStateFactory.create("low-stock"));
-	else
-	    item.setState(ItemStateFactory.create("in-stock"));
+	item.setState(ItemStateFactory.create("in-stock"));
 	item.notifyViewers();
 	return new ItemResult("RESTOCKED", ResponseCode.Completed);
     }

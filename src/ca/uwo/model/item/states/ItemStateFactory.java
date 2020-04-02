@@ -2,14 +2,6 @@ package ca.uwo.model.item.states;
 
 public class ItemStateFactory {
 
-    public static ItemState create(int q) {
-	if (q == 0)
-	    return new OutOfStockState();
-	else if (q > 0 && q < 50)
-	    return new LowStockState();
-	return new InStockState();
-    }
-
     public static ItemState create(String type) {
 	switch (type) {
 	case "in-stock":

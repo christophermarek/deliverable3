@@ -43,8 +43,7 @@ public class Item {
 	this.availableQuantity = quantity;
 	this.price = price;
 	this.viewers = new ArrayList<Viewer>();
-	this.state = ItemStateFactory.create(quantity);
-
+	this.state = ItemStateFactory.create("in-stock");
 	// Adding viewers thus implementing part of the Observer design pattern
 	this.viewers.add(StockManager.getInstance());
 	this.viewers.add(Messenger.getInstance());
@@ -52,6 +51,41 @@ public class Item {
 	// When you add states to items make sure you
 	// initialize them using the proper STATE!!!!
 
+    }
+
+    public void setState(ItemState state) {
+	this.state = state;
+    }
+
+    public void notifyViewers() {
+	for (Viewer view : viewers) {
+	    view.inform(this);
+	}
+    }
+
+    public void addViewer(Viewer view) {
+	boolean duplicate = false;
+	for (Viewer viewer : viewers) {
+	    if (viewer.equals(view)) {
+		duplicate = true;
+		break;
+	    }
+	}
+	if (!duplicate)
+	    viewers.add(view);
+	else
+	    System.out.println("-> Unable to add viewer, already exists");
+    }
+
+    public void deleteViewer(Viewer view) {
+	for (Viewer viewer : viewers) {
+	    if (viewer.equals(view)) {
+		viewers.remove(viewer);
+		System.out.println("-> Viewer deleted successfully");
+		break;
+	    }
+	}
+	System.out.println("-> Viewer not deleted, does not exist");
     }
 
     /**
@@ -110,39 +144,6 @@ public class Item {
      */
     public ItemResult replenish(int quantity) {
 	return state.replenish(this, quantity);
-    }
-
-    public void notifyViewers() {
-	for (Viewer viewer : viewers) {
-	    viewer.inform(this);
-	}
-    }
-
-    public void addViewer(Viewer view) {
-	boolean duplicate = false;
-	for (Viewer viewer : viewers) {
-	    if (viewer.equals(view)) {
-		duplicate = true;
-		break;
-	    }
-	}
-	if (!duplicate)
-	    viewers.add(view);
-	else
-	    System.out.println("-> Unable to add viewer, already exists");
-    }
-
-    public void deleteViewer(Viewer view) {
-	for (Viewer viewer : viewers) {
-	    if (viewer.equals(view)) {
-		viewers.remove(view);
-		break;
-	    }
-	}
-    }
-
-    public void setState(ItemState state) {
-	this.state = state;
     }
 
 }
