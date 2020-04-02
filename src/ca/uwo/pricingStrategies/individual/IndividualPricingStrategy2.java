@@ -4,6 +4,7 @@ public class IndividualPricingStrategy2 implements IndividualPricingStrategy {
 
     @Override
     public double calculate(int quantity, double price) {
+	System.out.println("-> Individual pricing strategy 2 used");
 	double res = quantity * price;
 	double rand = Math.random();
 	if (rand >= 0 && rand <= 0.2)

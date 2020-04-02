@@ -7,19 +7,19 @@ package ca.uwo.pricingStrategies.aggregate;
  */
 public class AggregatePricingStrategyFactory {
 
-	/**
-	 * create strategy for the total price calculation.
-	 * @param type each type is attached to one strategy.
-	 * @return one concrete implementation of {@link AggregatePricingStrategy}.
-	 */
-	public static AggregatePricingStrategy create(String type) {
-		switch(type) {
-		case "test":
-			return new TestAggregatePricingStrategy();
-		default:
-			return new AggregateDefaultPricingStrategy();
-		}
-		
+    /**
+     * create strategy for the total price calculation.
+     * @param type each type is attached to one strategy.
+     * @return one concrete implementation of {@link AggregatePricingStrategy}.
+     */
+    public static AggregatePricingStrategy create(String type) {
+	switch(type) {
+	case "test":
+	    return new TestAggregatePricingStrategy();
+	default:
+	    return new AggregateDefaultPricingStrategy();
 	}
-	
+
+    }
+
 }
