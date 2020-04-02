@@ -6,6 +6,7 @@ import java.util.Map;
 import ca.uwo.client.Supplier;
 import ca.uwo.model.Item;
 import ca.uwo.viewer.restock.strategies.RestockStrategy;
+import ca.uwo.viewer.restock.strategies.RestockStrategyFactory;
 
 /**
  * @author kkontog, ktsiouni, mgrigori
@@ -29,6 +30,7 @@ public class StockManager extends Viewer implements Runnable {
      */
     private StockManager() {
 	super();
+	this.restockStrategy = RestockStrategyFactory.create("");
 	Thread t = new Thread(this);
 	t.start();
     }
