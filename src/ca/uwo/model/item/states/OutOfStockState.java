@@ -8,18 +8,18 @@ public class OutOfStockState implements ItemState {
 
     @Override
     public ItemResult deplete(Item item, int quantity) {
-	ItemResult itemResult = new ItemResult("OUT OF STOCK", ResponseCode.Not_Completed);
-	return itemResult;
+	return new ItemResult("NOT AVAIALBLE", ResponseCode.Not_Completed);
     }
 
     @Override
     public ItemResult replenish(Item item, int quantity) {
-	int availableQuantity = item.getAvailableQuantity() + quantity;
-	item.setAvailableQuantity(availableQuantity);
-	ItemResult itemResult = new ItemResult("RESTOCKED", ResponseCode.Completed);
-	item.setState(new ItemStateFactory().create(availableQuantity));
+	int newQuantity = item.getAvailableQuantity() + quantity;
+	item.setAvailableQuantity(newQuantity);
+	if (newQuantity < 50)
+	    item.setState(ItemStateFactory.create("low-stock"));
+	else
+	    item.setState(ItemStateFactory.create("in-stock"));
 	item.notifyViewers();
-	return itemResult;
+	return new ItemResult("RESTOCKED", ResponseCode.Completed);
     }
-
 }

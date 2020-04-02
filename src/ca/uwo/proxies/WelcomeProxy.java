@@ -16,36 +16,37 @@ import ca.uwo.frontend.Facade;
  * design pattern.
  */
 public class WelcomeProxy extends Proxy {
-	private static WelcomeProxy instance = null; // singleton
-	/**
-	 * constructor for WelcomeProxy class.
-	 */
-	protected Proxy next = SupplierProxy.getInstance();
-	
-	private WelcomeProxy() { // singleton
-	}
-	
-	public static WelcomeProxy getInstance() { // singleton
-		if (instance == null)
-			instance = new WelcomeProxy();
-		
-		return instance;
-	}
+    private static WelcomeProxy instance = null; // singleton
+    /**
+     * constructor for WelcomeProxy class.
+     */
+    protected Proxy next = SupplierProxy.getInstance();
 
-	/* (non-Javadoc)
-	 * @see ca.uwo.frontend.interfaces.FacadeCommands#placeOrder(java.util.Map, ca.uwo.client.Buyer)
-	 */
-	@Override
-	public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
-		next.placeOrder(orderDetails, buyer);
-	}
+    private WelcomeProxy() { // singleton
+    }
 
-	/* (non-Javadoc)
-	 * @see ca.uwo.frontend.interfaces.FacadeCommands#restock(java.util.Map, ca.uwo.client.Supplier)
-	 */
-	@Override
-	public void restock(Map<String, Integer> restockDetails, Supplier supplier) {
-		next.restock(restockDetails, supplier);
+    public static WelcomeProxy getInstance() {
+	if (instance == null) {
+	    System.out.println("--> Welcome Proxy Initiated");
+	    instance = new WelcomeProxy();
 	}
+	return instance;
+    }
+
+    /* (non-Javadoc)
+     * @see ca.uwo.frontend.interfaces.FacadeCommands#placeOrder(java.util.Map, ca.uwo.client.Buyer)
+     */
+    @Override
+    public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
+	next.placeOrder(orderDetails, buyer);
+    }
+
+    /* (non-Javadoc)
+     * @see ca.uwo.frontend.interfaces.FacadeCommands#restock(java.util.Map, ca.uwo.client.Supplier)
+     */
+    @Override
+    public void restock(Map<String, Integer> restockDetails, Supplier supplier) {
+	next.restock(restockDetails, supplier);
+    }
 
 }
