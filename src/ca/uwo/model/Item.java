@@ -43,19 +43,7 @@ public class Item {
 	this.availableQuantity = quantity;
 	this.price = price;
 	this.viewers = new ArrayList<Viewer>();
-<<<<<<< HEAD
 	this.state = ItemStateFactory.create("in-stock");
-=======
-	
-	if (quantity == 0) { // state initialization
-		this.state = ItemStateFactory.create("out-of-stock");
-	}else if (quantity > 0 && quantity < 50){
-		this.state = ItemStateFactory.create("low-stock");
-	}else {
-		this.state = ItemStateFactory.create("in-stock");
-	}
-
->>>>>>> 8d6f23c1cc9ede14436ea3c1aa7a51039f554144
 	// Adding viewers thus implementing part of the Observer design pattern
 	this.viewers.add(StockManager.getInstance());
 	this.viewers.add(Messenger.getInstance());
