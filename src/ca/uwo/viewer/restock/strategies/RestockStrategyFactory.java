@@ -9,7 +9,7 @@ public class RestockStrategyFactory {
 			case "two":
 			    return new RestockStrategy2();
 			default:
-			    return new RestockStrategyDefault();
+			    return new RestockStrategy1();
 		}
     }
 }

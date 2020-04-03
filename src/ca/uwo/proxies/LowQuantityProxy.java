@@ -24,6 +24,8 @@ public class LowQuantityProxy extends Proxy{
     }
 
     public boolean authenticate(Buyer buyer) {
+    	return true;
+    	/*
 	boolean auth = false;
 	Scanner input = new Scanner(System.in);
 	while (!auth) {
@@ -42,6 +44,7 @@ public class LowQuantityProxy extends Proxy{
 		System.out.println("-> Authenticaton failed");
 	}
 	return auth;
+	*/
     }
 
     @Override
