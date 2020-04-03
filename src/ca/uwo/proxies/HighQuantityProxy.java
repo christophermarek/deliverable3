@@ -46,9 +46,9 @@ public class HighQuantityProxy extends Proxy {
     @Override
     public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
 	Facade facade = Facade.getInstance();
-	if (authenticate(buyer)) {
-	    facade.placeOrder(orderDetails, buyer);
-	}
+		if (authenticate(buyer)) {
+		    facade.placeOrder(orderDetails, buyer);
+		}
     }
 
     @Override

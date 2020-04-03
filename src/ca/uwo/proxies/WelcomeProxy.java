@@ -38,7 +38,7 @@ public class WelcomeProxy extends Proxy {
      */
     @Override
     public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
-	next.placeOrder(orderDetails, buyer);
+    	next.placeOrder(orderDetails, buyer);
     }
 
     /* (non-Javadoc)
@@ -46,7 +46,7 @@ public class WelcomeProxy extends Proxy {
      */
     @Override
     public void restock(Map<String, Integer> restockDetails, Supplier supplier) {
-	next.restock(restockDetails, supplier);
+    	next.restock(restockDetails, supplier);
     }
 
 }

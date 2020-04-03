@@ -13,11 +13,11 @@ public class SupplierProxy extends Proxy {
     protected Proxy next = LowQuantityProxy.getInstance();
 
     public static SupplierProxy getInstance() {
-	if (instance == null) {
-	    System.out.println("--> Supplier Proxy Initiated");
-	    instance = new SupplierProxy();
-	}
-	return instance;
+		if (instance == null) {
+		    System.out.println("--> Supplier Proxy Initiated");
+		    instance = new SupplierProxy();
+		}
+		return instance;
     }
 
     private SupplierProxy() { // singleton
@@ -26,7 +26,7 @@ public class SupplierProxy extends Proxy {
     @Override
     public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
 	// TODO Auto-generated method stub
-	next.placeOrder(orderDetails, buyer);
+    	next.placeOrder(orderDetails, buyer);
 
     }
 

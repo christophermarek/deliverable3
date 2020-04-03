@@ -40,7 +40,7 @@ public class StockManager extends Viewer implements Runnable {
      */
     @Override
     public void inform(Item item) {
-	restockDetails.put(item.getName(), restockStrategy.calculateQuantity(item.getName(), item.getAvailableQuantity(), item.getPrice()));
+    	restockDetails.put(item.getName(), restockStrategy.calculateQuantity(item.getName(), item.getAvailableQuantity(), item.getPrice()));
     }
 
     // TODO make concurrent
@@ -48,10 +48,10 @@ public class StockManager extends Viewer implements Runnable {
      * restock the Item from the Supplier.
      */
     public void order() {
-	System.out.println("restocked with " + restockDetails);
-	Supplier supplier = new Supplier();
-	supplier.supply(restockDetails);
-	restockDetails.clear();
+		System.out.println("restocked with " + restockDetails);
+		Supplier supplier = new Supplier();
+		supplier.supply(restockDetails);
+		restockDetails.clear();
     }
 
     /**
@@ -59,8 +59,8 @@ public class StockManager extends Viewer implements Runnable {
      * @param restockStrategy the restock strategy to be set.
      */
     public void setRestockStrategy(RestockStrategy restockStrategy) {
-	System.out.println("Restock strategy changed to: " + restockStrategy.toString());
-	this.restockStrategy = restockStrategy;
+    	System.out.println("Restock strategy changed to: " + restockStrategy.toString());
+    	this.restockStrategy = restockStrategy;
     }
 
     /* (non-Javadoc)

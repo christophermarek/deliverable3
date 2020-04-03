@@ -37,30 +37,30 @@ public class Item {
      *            price of the item.
      */
     public Item(int id, String name, int quantity, double price) {
-	super();
-	this.id = id;
-	this.name = name;
-	this.availableQuantity = quantity;
-	this.price = price;
-	this.viewers = new ArrayList<Viewer>();
-	this.state = ItemStateFactory.create("in-stock");
-	// Adding viewers thus implementing part of the Observer design pattern
-	this.viewers.add(StockManager.getInstance());
-	this.viewers.add(Messenger.getInstance());
-
-	// When you add states to items make sure you
-	// initialize them using the proper STATE!!!!
+		super();
+		this.id = id;
+		this.name = name;
+		this.availableQuantity = quantity;
+		this.price = price;
+		this.viewers = new ArrayList<Viewer>();
+		this.state = ItemStateFactory.create("in-stock");
+		// Adding viewers thus implementing part of the Observer design pattern
+		this.viewers.add(StockManager.getInstance());
+		this.viewers.add(Messenger.getInstance());
+	
+		// When you add states to items make sure you
+		// initialize them using the proper STATE!!!!
 
     }
 
     public void setState(ItemState state) {
-	this.state = state;
+    	this.state = state;
     }
 
     public void notifyViewers() {
-	for (Viewer view : viewers) {
-	    view.inform(this);
-	}
+		for (Viewer view : viewers) {
+		    view.inform(this);
+		}
     }
 
     public void addViewer(Viewer view) {
@@ -78,35 +78,35 @@ public class Item {
     }
 
     public void deleteViewer(Viewer view) {
-	for (Viewer viewer : viewers) {
-	    if (viewer.equals(view)) {
-		viewers.remove(viewer);
-		System.out.println("-> Viewer deleted successfully");
-		break;
-	    }
-	}
-	System.out.println("-> Viewer not deleted, does not exist");
+		for (Viewer viewer : viewers) {
+		    if (viewer.equals(view)) {
+		    	viewers.remove(viewer);
+		    	System.out.println("-> Viewer deleted successfully");
+		    	break;
+		    }
+		}
+		System.out.println("-> Viewer not deleted, does not exist");
     }
 
     /**
      * @return id of the item.
      */
     public int getId() {
-	return id;
+    	return id;
     }
 
     /**
      * @return name of the item.
      */
     public String getName() {
-	return name;
+    	return name;
     }
 
     /**
      * @return available quantity of the item.
      */
     public int getAvailableQuantity() {
-	return availableQuantity;
+    	return availableQuantity;
     }
 
     /**
@@ -114,14 +114,14 @@ public class Item {
      *            available quantity of the item in stock.
      */
     public void setAvailableQuantity(int availableQuantity) {
-	this.availableQuantity = availableQuantity;
+    	this.availableQuantity = availableQuantity;
     }
 
     /**
      * @return price of the item.
      */
     public double getPrice() {
-	return price;
+    	return price;
     }
 
     /**
@@ -132,7 +132,7 @@ public class Item {
      * @return execution result of the deplete action.
      */
     public ItemResult deplete(int quantity) {
-	return state.deplete(this, quantity);
+    	return state.deplete(this, quantity);
     }
 
     /**
@@ -143,7 +143,7 @@ public class Item {
      * @return execution result of the replenish action.
      */
     public ItemResult replenish(int quantity) {
-	return state.replenish(this, quantity);
+    	return state.replenish(this, quantity);
     }
 
 }

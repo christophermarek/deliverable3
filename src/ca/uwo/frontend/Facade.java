@@ -46,20 +46,18 @@ public class Facade implements FacadeCommands {
 	public void placeOrder(Map<String, Integer> orderDetails, Buyer buyer) {
 		//The buyer places the order according to orderDetails. The stock should be depleted
 		//accordingly and the buyer needs to make the payment using the invoice.
-		
+		System.out.println("Facade: ");
 		// Create order
 		Order newOrder = this.createOrder(orderDetails, buyer.getUserName());
 		System.out.println("\tPlacing Order");
-		
 		// Deplete stock
 		controller.depleteStock(newOrder);
-		
 		System.out.println("\tCreating Invoice");
 		// Create invoice for order
 		Invoice newInvoice = controller.createInvoice();
-		
 		// Receive payment from client
 		bank.receivePayment(newInvoice, buyer);
+		
 	}
 	
 	/* (non-Javadoc)
